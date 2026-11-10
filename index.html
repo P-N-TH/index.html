@@ -71,8 +71,29 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
  .detailphoto{height:90px;font-size:52px}
  .compareDialog{overflow-x:auto}
 }
+
+/* Welcome cover shown before entering the fruit explorer */
+.cover{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 15% 15%,#eff4e9 0,transparent 32rem),linear-gradient(145deg,#f8f8f1,#edf3e9);transition:opacity .35s ease,visibility .35s ease}
+.cover.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.cover-panel{position:relative;isolation:isolate;overflow:hidden;width:min(100%,900px);min-height:500px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:25px;padding:56px 60px;background:#fff;border:1px solid #e8ede3;border-radius:34px;box-shadow:0 28px 80px #29413218}
+.cover-panel:before,.cover-panel:after{content:'';position:absolute;z-index:-1;border-radius:50%;background:#edf3e8}
+.cover-panel:before{width:310px;height:310px;right:-80px;top:-90px}
+.cover-panel:after{width:220px;height:220px;left:-95px;bottom:-125px;background:#f8efdf}
+.cover-copy{position:relative;z-index:1}
+.cover-brand{display:inline-flex;align-items:center;gap:9px;color:#57775f;font-weight:700;font-size:14px}
+.cover-brand i{font-style:normal;display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:var(--green);color:white}
+.cover-eyebrow{margin:28px 0 10px;color:#829080;font-size:13px;font-weight:600}
+.cover h1{margin:0;color:#21392d;font-size:42px;line-height:1.3;letter-spacing:-.7px}
+.cover-copy p{max-width:430px;margin:15px 0 24px;color:#77847b;font-size:15px;line-height:1.85}
+.cover-cta{border:0;border-radius:13px;padding:14px 22px;background:var(--green);color:#fff;font-weight:700;font-size:15px;box-shadow:0 8px 18px #31594330;cursor:pointer}
+.cover-cta:hover{background:#254a35;transform:translateY(-1px)}
+.cover-hint{margin-top:13px;color:#9aa39b;font-size:11px}
+.cover-fruits{position:relative;height:320px;display:grid;place-items:center;border-radius:26px;background:linear-gradient(145deg,#e8f0df,#f7f3df);font-size:106px;letter-spacing:-28px}
+.cover-fruits:before{content:'';position:absolute;width:190px;height:190px;border-radius:50%;background:#ffffff70}
+.cover-fruits span{position:relative;filter:drop-shadow(0 15px 10px #30402c25)}
+@media(max-width:650px){.cover{padding:16px}.cover-panel{min-height:0;grid-template-columns:1fr;gap:22px;padding:27px 23px;border-radius:26px}.cover-eyebrow{margin-top:20px}.cover h1{font-size:31px}.cover-copy p{font-size:14px;line-height:1.7;margin:10px 0 18px}.cover-fruits{height:165px;grid-row:1;font-size:72px;letter-spacing:-22px;border-radius:20px}.cover-fruits:before{width:120px;height:120px}.cover-brand{font-size:12px}}
 </style></head>
-<body><header class="wrap top"><div class="brand"><i>พ</i> ผลไม้ดี</div><nav class="nav"><a href="#catalog">สำรวจผลไม้</a><a href="#catalog">คุณค่าทางอาหาร</a><a href="#source">เกี่ยวกับข้อมูล</a></nav></header>
+<body><section class="cover" id="cover" aria-label="หน้าปก"><div class="cover-panel"><div class="cover-copy"><div class="cover-brand"><i>พ</i> ผลไม้ดี · FRUIT NUTRITION</div><div class="cover-eyebrow">สำรวจผลไม้ไทยผ่านข้อมูลโภชนาการ</div><h1>เลือกผลไม้<br>ที่ใช่สำหรับคุณ</h1><p>ค้นพบสารอาหารของผลไม้แต่ละชนิด เปรียบเทียบข้อมูล และเลือกดูตามสิ่งที่สนใจ อ้างอิงข้อมูลต่อหนึ่งส่วนบริโภคจากตารางต้นฉบับ</p><button class="cover-cta" onclick="document.getElementById('cover').classList.add('is-hidden');document.body.style.overflow=''">เริ่มสำรวจผลไม้&nbsp; →</button><div class="cover-hint">ข้อมูลต้นแบบ 8 ชนิด · ดูรายละเอียดและเปรียบเทียบได้</div></div><div class="cover-fruits" aria-hidden="true"><span>🍊🍐🍓</span></div></div></section><header class="wrap top"><div class="brand"><i>พ</i> ผลไม้ดี</div><nav class="nav"><a href="#catalog">สำรวจผลไม้</a><a href="#catalog">คุณค่าทางอาหาร</a><a href="#source">เกี่ยวกับข้อมูล</a></nav></header>
 <main class="wrap"><section class="hero"><div><div class="eyebrow">เลือกผลไม้ให้ตรงกับสิ่งที่ร่างกายต้องการ</div><h1>ผลไม้แต่ละชนิด<br>มีดีไม่เหมือนกัน 🍊</h1><p>ค้นหา เปรียบเทียบ และสำรวจสารอาหารของผลไม้ไทย<br>อ้างอิงข้อมูลโภชนาการต่อหนึ่งส่วนบริโภค</p><label class="searchbox"><span>⌕</span><input id="search" placeholder="ค้นหาผลไม้ เช่น ฝรั่ง, ส้ม"><button onclick="render()">ค้นหา</button></label></div><div class="hero-art"><div class="fruit-emoji">🍊🍐🍓</div></div></section>
 <section class="highlights" aria-label="ไฮไลต์สารอาหาร"><article class="highlight"><small>ใยอาหารสูงสุดในกลุ่มที่แสดง</small><strong>สตรอว์เบอร์รี · 7.1 กรัม</strong><span>ต่อหนึ่งส่วนบริโภค</span></article><article class="highlight"><small>โพแทสเซียมสูงสุดในกลุ่มที่แสดง</small><strong>ส้มสายน้ำผึ้ง · 279 มก.</strong><span>ต่อหนึ่งส่วนบริโภค</span></article><article class="highlight"><small>น้ำตาลรวมน้อยสุดในกลุ่มที่แสดง</small><strong>สตรอว์เบอร์รี · 8.2 กรัม</strong><span>ต่อหนึ่งส่วนบริโภค</span></article></section>
 <section id="catalog"><div class="sectionhead"><div><h2>สำรวจผลไม้</h2><p>เลือกหมวดสารอาหารเพื่อจัดอันดับผลไม้ที่มีค่าสูง</p><span class="catalog-count">✦ 8 ผลไม้จากตารางต้นฉบับ</span></div><select class="sort" id="sort" onchange="render()"><option value="fiber">ใยอาหาร · มากไปน้อย</option><option value="sugars">น้ำตาลทั้งหมด · มากไปน้อย</option><option value="potassium">โพแทสเซียม · มากไปน้อย</option></select></div>
@@ -80,6 +101,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
 <div class="footnote" id="source">แหล่งข้อมูล: สถาบันวิจัยโภชนาการ มหาวิทยาลัยมหิดล, “คุณค่าทางโภชนาการของผลไม้ที่นิยมบริโภคในประเทศไทย” · <a href="https://inmu.mahidol.ac.th/uploads_file/freebook/f7t.pdf" target="_blank" style="color:#54755b">ดูเอกสารต้นฉบับ ↗</a><br>ข้อมูลโภชนาการของผลไม้ 8 ชนิดนี้อ้างอิงต่อหนึ่งส่วนจากตาราง PDF มหาวิทยาลัยมหิดล</div></main>
 <div class="comparebar"><span id="compareText">เลือกผลไม้เพื่อเปรียบเทียบ (เลือกได้สูงสุด 3 ชนิด)</span><button onclick="compare()">เปรียบเทียบผลไม้ →</button></div><div class="modal" id="detailModal" onclick="if(event.target===this)closeDetail()"><div class="dialog"><div class="dialogtop"><h3>รายละเอียดผลไม้</h3><button class="close" onclick="closeDetail()">×</button></div><div id="detailContent"></div></div></div><div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="dialog compareDialog"><div class="dialogtop"><h3>เปรียบเทียบสารอาหารทั้งหมด</h3><button class="close" onclick="closeModal()">×</button></div><div id="comparison"></div><div class="note">ค่าอ้างอิงจากตาราง PDF ต่อหนึ่งส่วนบริโภค</div></div></div>
 <script>
+document.body.style.overflow="hidden";
 const fruits=[
 {id:'guava',sourcePage:17,name:'ฝรั่ง',portion:'½ ผลกลาง · 125 กรัม',emoji:'🍐',bg:'#eaf1d9',fiber:5.4,vitc:165,potassium:280,energy:68},
 {id:'orange',sourcePage:27,name:'ส้มเขียวหวาน',portion:'2 ผล · 140 กรัม',emoji:'🍊',bg:'#fff0dc',fiber:2.2,vitc:48,potassium:180,energy:65},
